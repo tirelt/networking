@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    // creating socket
+    // creating TCP socket
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
     // specifying the address
