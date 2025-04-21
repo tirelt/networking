@@ -19,7 +19,27 @@
                 "cwd": "${cwd}"
             },
             "detail": "Build TCP client"
-        }   
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build UDP server",
+            "command": "make server-udp",
+            "args": [],
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "detail": "Build UDP server"
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build UDP client",
+            "command": "make client-udp",
+            "args": [],
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "detail": "Build UDP client"
+        }    
     ],
     "version": "2.0.0"
 }

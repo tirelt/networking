@@ -21,11 +21,36 @@
             "cwd": "${cwd}",
             "preLaunchTask": "Build TCP client"
         },
+        {
+            "name": "Debug UDP server",
+            //"type": "cppdbg",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${cwd}/server-udp",
+            "args": [],
+            "cwd": "${cwd}",
+            "preLaunchTask": "Build UDP server"
+        },
+        {
+            "name": "Debug UDP client",
+            //"type": "cppdbg",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${cwd}/client-udp",
+            "args": [],
+            "cwd": "${cwd}",
+            "preLaunchTask": "Build UDP client"
+        }
     ],
     "compounds": [
         {
             "name": "Debug TCP server&client",
             "configurations": ["Debug TCP server", "Debug TCP client"],
+            "stopAll": true
+        },
+        {
+            "name": "Debug UDP server&client",
+            "configurations": ["Debug UDP server", "Debug UDP client"],
             "stopAll": true
         }
     ]
