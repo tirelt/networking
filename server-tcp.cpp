@@ -2,7 +2,6 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
-using namespace std;
 
 int main()
 {
@@ -16,16 +15,22 @@ int main()
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
     // binding socket.
-    bind(serverSocket, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    if( bind(serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
+        std::cerr << "Bind failed\n";
+        return -1;
+    }
 
     // listening to the assigned socket
-    listen(serverSocket, 5);
+    if (listen(serverSocket, 5) < 0) {
+        std::cerr << "Listen failed\n";
+        return -1;
+    }
 
     // accepting connection request
 
-    cout << "Waiting for client connection...\n";
+    std::cout << "Waiting for client connection...\n";
     int clientSocket = accept(serverSocket, nullptr, nullptr);
-    cout << "Connection established!\n";
+    std::cout << "Connection established!\n";
 
     // recieving data
     char buffer[1024] = { 0 };
@@ -33,7 +38,7 @@ int main()
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer)-1, 0);
         // Check for client disconnection or error
         if (bytesReceived <= 0) {
-            cout << "Client disconnected or error occurred.\n";
+            std::cout << "Client disconnected or error occurred.\n";
             break;
         }
 
@@ -41,7 +46,7 @@ int main()
         buffer[bytesReceived] = '\0';
         
         // Print received message
-        cout << "Message from client: " << buffer << endl;
+        std::cout << "Message from client: " << buffer << std::endl;
     }
     // closing the socket.
     close(serverSocket);

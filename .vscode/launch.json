@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug TCP server",
+            //"type": "cppdbg",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${cwd}/server-tcp",
+            "args": [],
+            "cwd": "${cwd}",
+            "preLaunchTask": "Build TCP server"
+        },
+        {
+            "name": "Debug TCP client",
+            //"type": "cppdbg",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${cwd}/client-tcp",
+            "args": [],
+            "cwd": "${cwd}",
+            "preLaunchTask": "Build TCP client"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Debug TCP server&client",
+            "configurations": ["Debug TCP server", "Debug TCP client"],
+            "stopAll": true
+        }
+    ]
+}

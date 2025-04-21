@@ -1,0 +1,25 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build TCP server",
+            "command": "make server-tcp",
+            "args": [],
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "detail": "Build TCP server"
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build TCP client",
+            "command": "make client-tcp",
+            "args": [],
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "detail": "Build TCP client"
+        }   
+    ],
+    "version": "2.0.0"
+}

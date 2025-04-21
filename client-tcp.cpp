@@ -7,6 +7,7 @@
 
 int main()
 {
+    //sleep(3);
     // creating socket
     int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -23,7 +24,7 @@ int main()
     // sending connection request
     std::cout << "Connecting to server...\n";
     if(connect(clientSocket, (struct sockaddr*)&serverAddress,sizeof(serverAddress))<0){
-        std::cerr << "Connection failed\n";
+        std::cerr << "Connection failed: " << strerror(errno) << std::endl;
         return -1;
     };
 
@@ -34,8 +35,10 @@ int main()
         std::cin.getline(tempBuffer, 1024);  // Get input safely 
         if (strcmp(tempBuffer, "exit") == 0) {
             break;  // Stop the loop if user types "exit"
+        }  
+        if(send(clientSocket, tempBuffer, strlen(tempBuffer), 0) < 0){
+            std::cerr << "Error sending data: " << strerror(errno) << std::endl;
         }
-        send(clientSocket, tempBuffer, strlen(tempBuffer), 0);
     }
     // closing socket
     close(clientSocket);
