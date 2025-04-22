@@ -49,5 +49,5 @@ int main() {
         printf("Server: %s\n",buffer);
     }
     close(sockfd);
-    return 0; 
+    return 0;
 }
